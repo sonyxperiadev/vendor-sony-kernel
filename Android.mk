@@ -1,8 +1,7 @@
 ifeq ($(BUILD_KERNEL),false)
-ifeq ($(filter-out amami aries castor eagle flamingo honami leo scorpion seagull sirius tianchi tianchi_dsds togari,$(TARGET_DEVICE)),)
+ifeq ($(filter-out yukon rhine shinano shinano2,$(PRODUCT_PLATFORM)),)
 
 LOCAL_PATH := $(call my-dir)
-
 
 TARGET_PREBUILT_KERNEL := vendor/sony/kernel/kernel-$(TARGET_DEVICE)
 INSTALLED_KERNEL_TARGET ?= $(PRODUCT_OUT)/kernel
