@@ -1,5 +1,5 @@
 ifeq ($(BUILD_KERNEL),false)
-ifeq ($(filter-out yukon rhine shinano shinano2 kitakami,$(PRODUCT_PLATFORM)),)
+ifeq ($(filter-out yukon rhine shinano shinano2 kitakami karin,$(PRODUCT_PLATFORM)),)
 
 LOCAL_PATH := $(call my-dir)
 
