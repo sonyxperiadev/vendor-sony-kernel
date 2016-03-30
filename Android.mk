@@ -1,6 +1,19 @@
 ifeq ($(BUILD_KERNEL),false)
-ifeq ($(filter-out yukon rhine shinano shinano2 kitakami kanuti,$(PRODUCT_PLATFORM)),)
+ifeq ($(filter-out rhine shinano shinano2 kitakami kanuti,$(PRODUCT_PLATFORM)),)
+LOCAL_PATH := $(call my-dir)
 
+TARGET_PREBUILT_KERNEL := vendor/sony/kernel/kernel-dtb-$(TARGET_DEVICE)
+INSTALLED_KERNEL_TARGET ?= $(PRODUCT_OUT)/kernel
+
+file := $(INSTALLED_KERNEL_TARGET)
+ALL_PREBUILT += $(file)
+$(file) : $(TARGET_PREBUILT_KERNEL) | $(ACP)
+	$(transform-prebuilt-to-target)
+
+ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
+endif
+
+ifeq ($(filter-out yukon,$(PRODUCT_PLATFORM)),)
 LOCAL_PATH := $(call my-dir)
 
 TARGET_PREBUILT_KERNEL := vendor/sony/kernel/kernel-$(TARGET_DEVICE)
@@ -21,5 +34,4 @@ $(file) : $(TARGET_PREBUILT_KERNEL) $(DTBS) | $(ACP)
 
 ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
 endif
-
 endif
