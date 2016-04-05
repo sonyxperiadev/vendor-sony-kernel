@@ -1,5 +1,5 @@
 ifeq ($(BUILD_KERNEL),false)
-ifeq ($(filter-out rhine shinano shinano2 kitakami kanuti,$(PRODUCT_PLATFORM)),)
+ifeq ($(filter-out rhine shinano kitakami kanuti,$(PRODUCT_PLATFORM)),)
 LOCAL_PATH := $(call my-dir)
 
 TARGET_PREBUILT_KERNEL := vendor/sony/kernel/kernel-dtb-$(TARGET_DEVICE)
