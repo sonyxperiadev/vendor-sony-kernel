@@ -3,10 +3,10 @@ ifeq ($(filter-out yukon rhine shinano shinano2 kitakami kanuti,$(PRODUCT_PLATFO
 
 LOCAL_PATH := $(call my-dir)
 
-TARGET_PREBUILT_KERNEL := vendor/sony/kernel/kernel-$(TARGET_DEVICE)
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel-$(TARGET_DEVICE)
 INSTALLED_KERNEL_TARGET ?= $(PRODUCT_OUT)/kernel
 
-DTB_DIR := $(ANDROID_BUILD_TOP)/vendor/sony/kernel/dtbs
+DTB_DIR := $(LOCAL_PATH)/dtbs
 DTB_FILES := $(shell find -L $(DTB_DIR) -name "*$(TARGET_DEVICE)*.dtb")
 DTB_OUT_DIR := $(PRODUCT_OUT)/dtbs
 DTBS := $(foreach dtb,$(DTB_FILES),$(DTB_OUT_DIR)/$(notdir $(dtb)))
