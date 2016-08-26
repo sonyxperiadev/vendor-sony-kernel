@@ -13,3 +13,11 @@
 # limitations under the License.
 
 BUILD_KERNEL := false
+
+ifeq ($(BUILD_KERNEL),false)
+
+LOCAL_KERNEL := device/sony/common-kernel/kernel-dtb-$(TARGET_DEVICE)
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+endif
