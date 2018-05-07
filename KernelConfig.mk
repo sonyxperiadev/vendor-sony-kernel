@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILD_KERNEL := false
-
 ifeq ($(BUILD_KERNEL),false)
 
 LOCAL_KERNEL := $(KERNEL_PATH)/common-kernel/kernel-dtb-$(TARGET_DEVICE)
