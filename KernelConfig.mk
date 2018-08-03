@@ -16,17 +16,8 @@ BUILD_KERNEL := false
 
 ifeq ($(BUILD_KERNEL),false)
 
-dummy:=$(shell mkdir -p $$ANDROID_PRODUCT_OUT/obj/KERNEL_OBJ/usr/include/linux)
-dummy:=$(shell mkdir -p $$ANDROID_PRODUCT_OUT/obj/KERNEL_OBJ/usr/include/media)
-
-dummy:=$(shell cp -r $(PRODUCT_VENDOR_KERNEL_HEADERS)/linux/ion.h \
-        $$ANDROID_PRODUCT_OUT/obj/KERNEL_OBJ/usr/include/linux/)
-dummy:=$(shell cp -r $(PRODUCT_VENDOR_KERNEL_HEADERS)/linux/videodev2.h \
-        $$ANDROID_PRODUCT_OUT/obj/KERNEL_OBJ/usr/include/linux/)
-
 LOCAL_KERNEL := $(KERNEL_PATH)/common-kernel/kernel-dtb-$(TARGET_DEVICE)
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
-
 endif
