@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILD_KERNEL := false
+ifneq ($(BUILD_KERNEL_FROM_SOURCE),true)
+    BUILD_KERNEL := false
+endif
 
 ifeq ($(BUILD_KERNEL),false)
 
