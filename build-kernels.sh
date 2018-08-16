@@ -1,9 +1,13 @@
-export KERNEL_SRC=../kernel
-export KERNEL_TMP=../../../../out/kernel-tmp
-export CROSS_COMPILE=../../prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
-export CP_BLOB="cp $KERNEL_TMP/arch/arm64/boot/Image.gz-dtb ../../../../kernel/sony/msm-4.9/common-kernel/kernel-dtb"
+export ANDROID_ROOT=../../../..
+export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-4.9/
+export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
 
+# Cross Compiler
+export CROSS_COMPILE=../../prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+# Build command
+export BUILD="make O=$KERNEL_TMP ARCH=arm64 CROSS_COMPILE=$CROSS_COMPILE -j$(nproc)"
+# Copy prebuilt kernel
+export CP_BLOB="cp $KERNEL_TMP/arch/arm64/boot/Image.gz-dtb $KERNEL_TOP/common-kernel/kernel-dtb"
 
 LOIRE="suzu kugo blanc"
 TONE="dora kagura keyaki"
@@ -12,7 +16,7 @@ NILE="discovery pioneer"
 
 PLATFORMS="loire tone yoshino nile"
 
-cd $KERNEL_SRC
+cd $KERNEL_TOP/kernel
 
 for platform in $PLATFORMS; do \
 
@@ -28,7 +32,7 @@ nile)
 esac
 
 for device in $DEVICE; do \
-    $BUILD clean
+    rm -r $KERNEL_TMP
     $BUILD aosp_$platform"_"$device\_defconfig
     $BUILD
     $CP_BLOB-$device
