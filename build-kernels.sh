@@ -13,8 +13,9 @@ LOIRE="suzu kugo blanc"
 TONE="dora kagura keyaki"
 YOSHINO="lilac maple poplar"
 NILE="discovery pioneer"
+TAMA="akari apollo"
 
-PLATFORMS="loire tone yoshino nile"
+PLATFORMS="loire tone yoshino nile tama"
 
 cd $KERNEL_TOP/kernel
 
@@ -29,6 +30,8 @@ yoshino)
     DEVICE=$YOSHINO;;
 nile)
     DEVICE=$NILE;;
+tama)
+    DEVICE=$TAMA;;
 esac
 
 for device in $DEVICE; do \
