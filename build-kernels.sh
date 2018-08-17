@@ -16,6 +16,7 @@ if [ ! -f $MKDTIMG ]; then
     echo "mkdtimg: File not found!"
     echo "Building mkdtimg"
     cd  $ANDROID_ROOT/
+    export ALLOW_MISSING_DEPENDENCIES=true
     make mkdtimg
 fi
 
