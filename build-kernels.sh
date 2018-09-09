@@ -54,7 +54,12 @@ for device in $DEVICE; do \
     rm -rf $KERNEL_TMP
     mkdir $KERNEL_TMP
     $BUILD aosp_$platform"_"$device\_defconfig
-    $BUILD
+
+    echo "The build may take up to 10 minutes. Please be patient ..."
+    echo "Building new kernel image ..."
+    echo "Loggin to $KERNEL_TMP/build_log_${device}"
+    $BUILD >$KERNEL_TMP/build_log_${device} 2>&1;
+
     $CP_BLOB-$device
     if [ $DTBO = "true" ]; then
         $MKDTIMG create $KERNEL_TOP/common-kernel/dtbo-$device\.img `find $KERNEL_TMP/arch/arm64/boot/dts -name "*.dtbo"`
