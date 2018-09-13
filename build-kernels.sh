@@ -30,6 +30,12 @@ PLATFORMS="loire tone yoshino nile tama"
 
 cd $KERNEL_TOP/kernel
 
+echo "================================================="
+echo "Your Environment:"
+echo "ANDROID_ROOT: ${ANDROID_ROOT}"
+echo "KERNEL_TOP  : ${KERNEL_TOP}"
+echo "KERNEL_TMP  : ${KERNEL_TMP}"
+
 for platform in $PLATFORMS; do \
 
 case $platform in
@@ -51,8 +57,14 @@ tama)
 esac
 
 for device in $DEVICE; do \
-    rm -rf $KERNEL_TMP
-    mkdir $KERNEL_TMP
+    ret=$(rm -rf ${KERNEL_TMP} 2>&1);
+    ret=$(mkdir -p ${KERNEL_TMP} 2>&1);
+    if [ ! -d ${KERNEL_TMP} ] ; then
+        echo "Check your environment";
+        echo "ERROR: ${ret}";
+        exit 1;
+    fi
+
     echo "================================================="
     echo "Platform -> ${platform} :: Device -> $device"
     ret=$(${BUILD} aosp_$platform"_"$device\_defconfig 2>&1);
