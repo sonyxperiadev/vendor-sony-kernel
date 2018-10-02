@@ -8,7 +8,7 @@ export CP_BLOB="cp $KERNEL_TMP/arch/arm64/boot/Image.gz-dtb ../../../../kernel/s
 LOIRE="suzu kugo blanc"
 TONE="dora kagura keyaki"
 YOSHINO="lilac maple poplar"
-NILE="discovery pioneer"
+NILE="discovery pioneer voyager"
 
 PLATFORMS="loire tone yoshino nile"
 
