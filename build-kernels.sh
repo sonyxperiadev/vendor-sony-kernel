@@ -1,5 +1,6 @@
-export ANDROID_ROOT=../../../..
-export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-4.9/
+cd ../../../..
+export ANDROID_ROOT=$(pwd)
+export KERNEL_TOP=$ANDROID_ROOT/kernel/sony/msm-4.9
 export KERNEL_TMP=$ANDROID_ROOT/out/kernel-tmp
 
 # Cross Compiler
@@ -15,7 +16,6 @@ export CP_BLOB="cp $KERNEL_TMP/arch/arm64/boot/Image.gz-dtb $KERNEL_TOP/common-k
 if [ ! -f $MKDTIMG ]; then
     echo "mkdtimg: File not found!"
     echo "Building mkdtimg"
-    cd  $ANDROID_ROOT/
     export ALLOW_MISSING_DEPENDENCIES=true
     make mkdtimg
 fi
@@ -51,7 +51,8 @@ tama)
 esac
 
 for device in $DEVICE; do \
-    rm -r $KERNEL_TMP
+    rm -rf $KERNEL_TMP
+    mkdir $KERNEL_TMP
     $BUILD aosp_$platform"_"$device\_defconfig
     $BUILD
     $CP_BLOB-$device
@@ -60,3 +61,9 @@ for device in $DEVICE; do \
     fi
 done
 done
+
+unset ANDROID_ROOT
+unset KERNEL_TOP
+unset KERNEL_CFG
+unset KERNEL_TMP
+unset BUILD
